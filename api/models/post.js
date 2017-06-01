@@ -18,10 +18,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     content: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     excerpt: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     status: {
       type: DataTypes.STRING

@@ -13,21 +13,17 @@ PostController.create = (req, res) => {
   newPost.raw = req.body
 
   Post.findOrCreate({
-    where: newPost
-  })
-  .then(post => {
-    console.log(post)
-    if(post[1]){
-      return res.status(201).json({post: post[0]})
+    where: {
+      wpID: newPost.wpID
+    },
+    defaults: newPost
+  }).spread((post, created) => {
+    if(created){
+      return res.status(201).json({post: post})
     }
-    Post.update(newPost, {
-      where: {
-        wpId: newPost.wpId
-      }
-    })
+
+    post.update(newPost)
     .then(post => {
-      console.log('update')
-      console.log(post)
       return res.status(201).json({post: post})
     })
     .catch(error => {
@@ -35,7 +31,7 @@ PostController.create = (req, res) => {
         error: error
       })
     })
-    
+
   })
   .catch(error => {
     return res.status(500).json({

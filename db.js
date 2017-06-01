@@ -22,7 +22,7 @@ Object.keys(db).forEach((modelName) => {
 })
 
 sequelize
-.sync({ force: false })
+.sync({ force: true })
 .then(() => {
   console.log('DB Connection Success')
 })
