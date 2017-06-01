@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const jwtSecret = process.env.JWT_SECRET
+let JWT_SECRET = 'use-this-or-gen-new-secret'
+if(process.env.JWT_SECRET){
+  JWT_SECRET = process.env.JWT_SECRET
+}
+const jwtSecret = JWT_SECRET
 
 const postmark = require('postmark')
 const mailer = new postmark.Client(process.env.POSTMARK_KEY)
