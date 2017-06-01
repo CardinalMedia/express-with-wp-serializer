@@ -62,8 +62,16 @@ app.post(apiPrefix + '/auth/password/reset/start', Controllers.auth.startPasswor
 app.get('/password/reset/:token', Controllers.auth.renderForm)
 app.post(apiPrefix + '/auth/password/reset/', Controllers.auth.savePasswordReset)
 
+// Post Routes
+
+app.post(apiPrefix + '/posts', Controllers.post.create)
+app.get(apiPrefix + '/posts', Controllers.post.find)
+app.get(apiPrefix + '/posts/:id', Controllers.post.findById)
+
 app.get('*', (req, res) => {
-  res.status(404).render('pages/404')
+  res.status(404).json({
+    error: 'Not Found'
+  })
 })
 
 var port = process.env.PORT || 3000
