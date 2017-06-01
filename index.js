@@ -6,7 +6,11 @@ const path = require('path')
 const bodyParser = require('body-parser')
 
 const expressJwt = require('express-jwt')
-const jwtSecret = process.env.JWT_SECRET
+let JWT_SECRET = 'use-this-or-gen-new-secret'
+if(process.env.JWT_SECRET){
+  JWT_SECRET = process.env.JWT_SECRET
+}
+const jwtSecret = JWT_SECRET
 
 // fetch controllers
 const Models = require('./db.js')
