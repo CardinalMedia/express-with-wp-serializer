@@ -12,7 +12,7 @@ if(process.env.JWT_SECRET){
 }
 const jwtSecret = JWT_SECRET
 
-// fetch controllers
+// get Modles and Controllers
 const Models = require('./db.js')
 const Controllers = {}
 
@@ -39,19 +39,10 @@ app.use(function (req, res, next) {
 
 app.models = Models
 
-app.get('/', (req, res) => {
-  res.status(200).json({
-    apiStatus: 'ok'
-  })
-})
-
-app.get('/api/v1/routes', (req, res) => {
-  res.status(200).json({
-    endpoints: app._router.stack.filter(r => r.route).map(r => r.route.path)
-  })
-})
-
-app.get(apiPrefix + '/status', Controllers.status.find)
+// Post Routes
+app.post(apiPrefix + '/posts', Controllers.post.create)
+app.get(apiPrefix + '/posts', Controllers.post.find)
+app.get(apiPrefix + '/posts/:id', Controllers.post.findById)
 
 // User Routes
 app.post(apiPrefix + '/users', Controllers.user.create)
@@ -66,12 +57,18 @@ app.post(apiPrefix + '/auth/password/reset/start', Controllers.auth.startPasswor
 app.get('/password/reset/:token', Controllers.auth.renderForm)
 app.post(apiPrefix + '/auth/password/reset/', Controllers.auth.savePasswordReset)
 
-// Post Routes
-
-app.post(apiPrefix + '/posts', Controllers.post.create)
-app.get(apiPrefix + '/posts', Controllers.post.find)
-app.get(apiPrefix + '/posts/:id', Controllers.post.findById)
-
+// Misc Routes
+app.get(apiPrefix + '/status', Controllers.status.find)
+app.get('/', (req, res) => {
+  res.status(200).json({
+    apiStatus: 'ok'
+  })
+})
+app.get('/api/v1/routes', (req, res) => {
+  res.status(200).json({
+    endpoints: app._router.stack.filter(r => r.route).map(r => r.route.path)
+  })
+})
 app.get('*', (req, res) => {
   res.status(404).json({
     error: 'Not Found'

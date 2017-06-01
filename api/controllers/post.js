@@ -2,9 +2,7 @@ const PostController = {}
 
 PostController.create = (req, res) => {
   const Post = req.app.models.Post
-
   let newPost = {}
-
   newPost.wpID = req.body.id
   newPost.slug = req.body.slug
   newPost.title = req.body.title.rendered

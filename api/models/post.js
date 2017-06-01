@@ -36,18 +36,11 @@ module.exports = (sequelize, DataTypes) => {
     instanceMethods: {
       toJSON: function () {
         var values = Object.assign({}, this.get())
-
-        delete values.password
+        delete values.raw
         return values
       }
-    },
-    classMethods: {
-      // associate: function(models) {
-      //   User.hasMany(models.Task)
     }
-  }, {
-
-  })
-
+  }, 
+  { })
   return Post
 }
