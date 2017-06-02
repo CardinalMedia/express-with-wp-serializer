@@ -6,13 +6,6 @@ Because I don't want to write the same things over and over again and I wanted a
 
 Autoload controllers and Models to the Express app object.
 
-.env Variables
-```
-ROOT_URL // project url for generated urls
-DATABASE_URL // example: postgres://localhost:5432/boilerplate
-JWT_SECRET // used for token gen
-```
-
 ## Get Started
 
 ### Install Dependencies
@@ -35,6 +28,13 @@ Thats it, while its pretty easy to set up use for Postgres this app will fallbac
 
 I've provided a .env-example file which will work with only a db url change.
 Update the db url and change the file from .env-example to .env
+
+.env Variables
+```
+ROOT_URL // project url for generated urls
+DATABASE_URL // example: postgres://localhost:5432/boilerplate
+JWT_SECRET // used for token gen
+```
 
 ### Database Options
 
