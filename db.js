@@ -8,7 +8,7 @@ if (process.env.DATABASE_URL) {
 } else {
   sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: './storage/db.sqlite'
+    storage: './db.sqlite'
   })
 }
 
