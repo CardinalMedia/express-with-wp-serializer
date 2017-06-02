@@ -69,7 +69,7 @@ PostController.findById = (req, res) => {
   const Post = req.app.models.Post
 
   Post.findById(req.params.id)
-  .then((user) => {
+  .then((post) => {
     return res.status(200).json({
       post: post
     })

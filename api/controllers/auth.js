@@ -6,8 +6,8 @@ if(process.env.JWT_SECRET){
 }
 const jwtSecret = JWT_SECRET
 
-const postmark = require('postmark')
-const mailer = new postmark.Client(process.env.POSTMARK_KEY)
+// const postmark = require('postmark')
+// const mailer = new postmark.Client(process.env.POSTMARK_KEY)
 
 const AuthController = {}
 
@@ -62,12 +62,12 @@ AuthController.startPasswordReset = (req, res) => {
         exp: Math.floor(Date.now() / 1000) + (60 * 60)
       }, jwtSecret)
 
-      mailer.sendEmail({
-        'From': 'jordan@cauley.co',
-        'To': user.email,
-        'Subject': 'Reset Your BeerNC Password',
-        'TextBody': '<a href="' + process.env.ROOT_URL + '/password/reset/' + emailToken + '>Click here to reset your Email</a>'
-      })
+      // mailer.sendEmail({
+      //   'From': 'jordan@cauley.co',
+      //   'To': user.email,
+      //   'Subject': 'Reset Your Password',
+      //   'TextBody': '<a href="' + process.env.ROOT_URL + '/password/reset/' + emailToken + '>Click here to reset your Email</a>'
+      // })
 
       return res.status(200).json({
         reset: 'running'

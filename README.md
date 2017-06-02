@@ -10,15 +10,15 @@ Autoload controllers and Models to the Express app object.
 ```
 ROOT_URL // project url for generated urls
 DATABASE_URL // example: postgres://localhost:5432/boilerplate
-SSL_STATUS // for db Connection
 JWT_SECRET // used for token gen
-POSTMARK_KEY // used for mail functions
 ```
 
 ## Get Started
 
 ### Create a postgres database.
 I'm on OSX and used http://postgresapp.com
+
+Creating a Postgres db is probably thi
 
 ### Update/Create .env file
 I've provided a .env-example file which will work with only a db url change.
